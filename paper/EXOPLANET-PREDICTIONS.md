@@ -1,6 +1,6 @@
 # Exoplanet Orbital Predictions: Eigenmode Quantization Catalog
 
-[← Repository Overview](README.md) | [Primary Research Paper](EIGENMODE-ORBITAL-DYNAMICS.md)
+[← Repository Overview](../README.md) | [Primary Research Paper](EIGENMODE-ORBITAL-DYNAMICS.md)
 
 **Classification:** Observational Astronomy & Predictive Planetary Dynamics  
 **Framework:** Scale-Invariant Magnetohydrodynamic Wave Mechanics ($r_n = r_0 \cdot k^n$)  

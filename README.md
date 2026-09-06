@@ -1,6 +1,6 @@
 # Eigenmode Orbital Dynamics — Research Paper & Prediction Catalog
 
-[Primary Research Paper](EIGENMODE-ORBITAL-DYNAMICS.md) | [Exoplanet Predictions Catalog](EXOPLANET-PREDICTIONS.md) | [Interactive 3D Visualizer](visualizer/index.html)
+[Primary Research Paper](paper/EIGENMODE-ORBITAL-DYNAMICS.md) | [Compiled PDF](paper/EIGENMODE-ORBITAL-DYNAMICS.pdf) | [Exoplanet Predictions](paper/EXOPLANET-PREDICTIONS.md) | [Interactive 3D Simulation](simulation/index.html) | [Summation Video & Narration](summation-video/narration/YOUTUBE-SCRIPT-ELI5.md)
 
 **Classification:** Theoretical & Observational Astrophysics — Macroscopic Standing Wave Mechanics  
 **Author:** Rick Drayson  
@@ -10,33 +10,40 @@
 
 ## Directory Overview
 
-This directory houses the comprehensive research paper, mathematical derivations, empirical validation datasets, and predictive exoplanetary catalogs establishing the **Eigenmode Orbital Dynamics** framework.
+This repository is organized into three dedicated modules: the research paper and verification suite (`paper/`), the real-time interactive 3D orbital simulation engine (`simulation/`), and the media production suite for video, audio, and visual renders (`summation-video/`).
 
 ```
 .
-├── README.md                           # This index and roadmap
-├── EIGENMODE-ORBITAL-DYNAMICS.md       # Primary peer-ready research paper (with disclosed open problems)
-├── EIGENMODE-ORBITAL-DYNAMICS.pdf      # Compiled publication-ready PDF document
-├── EXOPLANET-PREDICTIONS.md            # Prediction catalog: retrospective + Category 1/2 blind predictions
-├── YOUTUBE-SCRIPT-ELI5.md              # Plain-language explanation script for companion video
-├── generate_pdf.py                     # Automated PDF build pipeline (KaTeX -> Headless Chromium)
-├── scripts/
-│   ├── eigenmode_solver.py             # Core regression solver (now with CI + MAE/MaxErr)
-│   ├── null_hypothesis_test.py         # Monte Carlo baseline test (Phase A1)
-│   ├── stellar_parameter_prediction.py # A priori r0/lambda test vs. real stellar parameters (Phase A2)
-│   ├── index_sensitivity_test.py       # Index-gap-assignment sensitivity test (Phase A3)
-│   ├── measurement_precision_check.py  # Model error vs. real published observational uncertainty (Section 5.6)
-│   ├── k_ratio_significance_test.py    # Tests "nice ratio" k labels for statistical significance (Section 4.2a)
-│   ├── alternative_model_comparison.py # Eigenmode vs. Titius-Bode AIC + Hill-radius stability check (Section 5.7)
-│   └── blind_prediction_program.py     # Category 1 (new systems) + Category 2 (blind analog) predictions
-└── visualizer/                         # 3D Simulation, Video & Screenshot Suite
-    ├── index.html                      # Interactive 3D WebGL / Three.js Resonator Sim
-    ├── app.js                          # Real-time orbital engine & canvas recorder
-    ├── style.css                       # Visualizer interface styling
-    ├── render_simulation_video.py      # Python Matplotlib + FFmpeg 1080p MP4 & PNG renderer
-    ├── blender_eigenmode_scene.py      # Automated Blender 3D scene & raytracer script
-    ├── eigenmode_orbital_snapshot.png  # High-res generated snapshot
-    └── eigenmode_orbital_simulation.mp4# Generated MP4 orbital simulation video
+├── README.md                           # Repository overview and roadmap
+├── .gitignore                          # Git exclusions
+├── paper/                              # Peer-ready research paper & mathematical validation
+│   ├── EIGENMODE-ORBITAL-DYNAMICS.md   # Primary research paper (with disclosed open problems)
+│   ├── EIGENMODE-ORBITAL-DYNAMICS.pdf  # Compiled publication-ready PDF document
+│   ├── EXOPLANET-PREDICTIONS.md        # Prediction catalog: retrospective + Category 1/2 blind predictions
+│   ├── generate_pdf.py                 # Automated PDF build pipeline (KaTeX -> Headless Chromium)
+│   └── scripts/                        # Python statistical rigor and validation test suite
+│       ├── eigenmode_solver.py         # Core regression solver (CI + MAE/MaxErr)
+│       ├── null_hypothesis_test.py     # Monte Carlo baseline test (Phase A1)
+│       ├── stellar_parameter_prediction.py # A priori r0/lambda test vs. stellar parameters (Phase A2)
+│       ├── index_sensitivity_test.py   # Index-gap-assignment sensitivity test (Phase A3)
+│       ├── measurement_precision_check.py # Model error vs. published observational uncertainty (Section 5.6)
+│       ├── k_ratio_significance_test.py# Tests "nice ratio" k labels for statistical significance (Section 4.2a)
+│       ├── alternative_model_comparison.py # Eigenmode vs. Titius-Bode AIC + Hill-radius check (Section 5.7)
+│       └── blind_prediction_program.py # Category 1 (new systems) + Category 2 (blind analog) predictions
+├── simulation/                         # Real-time WebGL / Three.js 3D simulation engine
+│   ├── index.html                      # Interactive 3D WebGL / Three.js Resonator Sim
+│   ├── app.js                          # Real-time orbital engine & canvas recorder
+│   └── style.css                       # Visualizer interface styling
+└── summation-video/                    # Video production, audio, narration, and 3D renders
+    ├── video/                          # Final rendered MP4 video simulations
+    │   └── eigenmode_orbital_simulation.mp4 # 1080p MP4 orbital simulation video
+    ├── music/                          # Audio soundtracks and background tracks
+    ├── narration/                      # Spoken-word scripts and recording notes
+    │   └── YOUTUBE-SCRIPT-ELI5.md      # Plain-language explanation script for companion video
+    └── renders/                        # High-resolution raytraced snapshots and render generators
+        ├── eigenmode_orbital_snapshot.png  # High-res generated multi-panel figure
+        ├── render_simulation_video.py  # Python Matplotlib + FFmpeg 1080p MP4 & PNG renderer
+        └── blender_eigenmode_scene.py  # Automated Blender 3D scene & raytracer script
 ```
 
 ---
@@ -77,13 +84,13 @@ The repository includes a comprehensive 3D simulation and media export engine:
 2. **Python / FFmpeg High-Definition Video & Snapshot Generator (`visualizer/render_simulation_video.py`):**
    - To render high-definition MP4 video and multi-panel PNG figures:
    ```bash
-   python3 visualizer/render_simulation_video.py
+   python3 summation-video/renders/render_simulation_video.py
    ```
 
-3. **Blender Scene Generator (`visualizer/blender_eigenmode_scene.py`):**
+3. **Blender Scene Generator (`summation-video/renders/blender_eigenmode_scene.py`):**
    - For raytraced production renders and animation overlays:
    ```bash
-   blender --python visualizer/blender_eigenmode_scene.py
+   blender --python summation-video/renders/blender_eigenmode_scene.py
    ```
 
 ---
@@ -113,5 +120,5 @@ The repository includes a comprehensive 3D simulation and media export engine:
 
 To re-run all regression calculations, compute residuals, and generate exoplanet predictions:
 ```bash
-python3 scripts/eigenmode_solver.py
+python3 paper/scripts/eigenmode_solver.py
 ```

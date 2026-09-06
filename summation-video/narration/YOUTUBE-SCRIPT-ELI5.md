@@ -1,12 +1,12 @@
 # YouTube Script (ELI5): "Why Are Planets Parked Where They Are?"
 
-[← Back to Research Directory](README.md) | [← Full Paper](EIGENMODE-ORBITAL-DYNAMICS.md)
+[← Repository Overview](../../README.md) | [Full Research Paper](../../paper/EIGENMODE-ORBITAL-DYNAMICS.md)
 
-**Purpose:** A short, plain-language narration script for a companion YouTube video explaining the core idea of [EIGENMODE-ORBITAL-DYNAMICS.md](EIGENMODE-ORBITAL-DYNAMICS.md) to a general audience, for cross-linking between the video and the full paper.
+**Purpose:** A short, plain-language narration script for a companion YouTube video explaining the core idea of [paper/EIGENMODE-ORBITAL-DYNAMICS.md](../../paper/EIGENMODE-ORBITAL-DYNAMICS.md) to a general audience, for cross-linking between the video and the full paper.
 
 **Target length:** ~3–4 minutes spoken (roughly 500–550 words).
 
-**Suggested visuals:** noted in `[brackets]` — pulls from the existing `visualizer/` suite (screenshot / MP4) and simple on-screen text/diagrams.
+**Suggested visuals:** noted in `[brackets]` — pulls from the simulation and renders suite (screenshot / MP4) and simple on-screen text/diagrams.
 
 ---
 
@@ -64,4 +64,4 @@ So — are planets really just randomly scattered debris? Or are they settling i
 
 - Keep tone curious, not preachy — this is "here's a cool pattern and a testable idea," not "here's the truth they don't want you to know."
 - Avoid overly academic or esoteric terminology — use plain "wave medium" / "standing wave" language so the video stands alone for a general audience.
-- The visualizer (`visualizer/index.html`, served via `python3 -m http.server 8085`) and `visualizer/eigenmode_orbital_simulation.mp4` are the primary b-roll source.
+- The simulation (`simulation/index.html`, served via `python3 -m http.server 8085`) and `summation-video/video/eigenmode_orbital_simulation.mp4` are the primary b-roll source.

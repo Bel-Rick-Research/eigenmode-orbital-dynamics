@@ -1,6 +1,6 @@
 # Eigenmode Orbital Dynamics: Quantized Standing-Wave Structures in Circumstellar and Circumplanetary Systems
 
-[← Repository Overview](README.md) | [Exoplanet Predictions Catalog](EXOPLANET-PREDICTIONS.md)
+[← Repository Overview](../README.md) | [Exoplanet Predictions Catalog](EXOPLANET-PREDICTIONS.md)
 
 **Classification:** Theoretical Astrophysics & Planetary Geodynamics  
 **Framework:** Scale-Invariant Magnetohydrodynamic Wave Mechanics  

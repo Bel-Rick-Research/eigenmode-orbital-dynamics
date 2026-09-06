@@ -18,9 +18,10 @@ import matplotlib.animation as animation
 from matplotlib.patches import Circle
 
 # Output Paths
-OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
-SNAPSHOT_PATH = os.path.join(OUTPUT_DIR, 'eigenmode_orbital_snapshot.png')
-VIDEO_PATH = os.path.join(OUTPUT_DIR, 'eigenmode_orbital_simulation.mp4')
+RENDERS_DIR = os.path.dirname(os.path.abspath(__file__))
+VIDEO_DIR = os.path.join(os.path.dirname(RENDERS_DIR), 'video')
+SNAPSHOT_PATH = os.path.join(RENDERS_DIR, 'eigenmode_orbital_snapshot.png')
+VIDEO_PATH = os.path.join(VIDEO_DIR, 'eigenmode_orbital_simulation.mp4')
 
 # Solar System Data
 BODIES = [
