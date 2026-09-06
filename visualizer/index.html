@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eigenmode Orbital Dynamics 3D Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Three.js and OrbitControls from CDN with fallback -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <!-- UI Overlay Header -->
+    <header class="ui-header">
+        <div class="title-block">
+            <h1>EIGENMODE ORBITAL DYNAMICS</h1>
+            <h2>Macroscopic Standing-Wave Resonator Simulator</h2>
+        </div>
+        <div class="system-stats" id="system-stats">
+            <span class="stat-badge">System: <strong id="stat-name">Solar System</strong></span>
+            <span class="stat-badge">Formula: <strong id="stat-formula">r_n = 0.2136 · (1.7114)ⁿ AU</strong></span>
+            <span class="stat-badge">k-Ratio: <strong id="stat-k">1.7114 (continuous)</strong></span>
+            <span class="stat-badge">R² Fit: <strong id="stat-r2">0.9934</strong></span>
+        </div>
+    </header>
+
+    <!-- Floating Control Panel -->
+    <div class="ui-panel" id="controls-panel">
+        <div class="panel-section">
+            <label for="system-select"><strong>Preset Resonator System:</strong></label>
+            <select id="system-select">
+                <option value="sol" selected>Solar System (Sol / G2V) [k = 1.711]</option>
+                <option value="trappist1">TRAPPIST-1 (M8V Red Dwarf) [k = 1.319]</option>
+                <option value="kepler90">Kepler-90 (G0V Sol-like) [k = 1.400]</option>
+                <option value="kepler11">Kepler-11 (G6V Star) [k = 1.317]</option>
+                <option value="cancri55">55 Cancri A (K0IV Star) [k = 2.050]</option>
+                <option value="toi700">TOI-700 (M2V Dwarf) [k = 1.351]</option>
+                <option value="jovian">Jupiter Galilean Moons [k = 1.641]</option>
+                <option value="saturnian">Saturn Major Moons [k = 1.310]</option>
+                <option value="uranian">Uranus Major Moons [k = 1.467]</option>
+            </select>
+        </div>
+
+        <div class="panel-section">
+            <label><strong>Visualisation Layers:</strong></label>
+            <div class="checkbox-grid">
+                <label><input type="checkbox" id="toggle-standing-waves" checked> 3D Wave Potential Sheaths</label>
+                <label><input type="checkbox" id="toggle-cymatic-mesh" checked> Cymatics Wave Ripple</label>
+                <label><input type="checkbox" id="toggle-predicted-shells" checked> Predicted / Empty Shells</label>
+                <label><input type="checkbox" id="toggle-orbits" checked> Orbital Paths</label>
+                <label><input type="checkbox" id="toggle-labels" checked> Body & Shell Labels</label>
+                <label><input type="checkbox" id="toggle-log-scale"> Logarithmic Spatial Scale</label>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <label for="speed-slider"><strong>Simulation Speed:</strong> <span id="speed-val">1.0x</span></label>
+            <input type="range" id="speed-slider" min="0" max="5" step="0.1" value="1.0">
+            <div class="btn-group">
+                <button id="btn-pause" class="btn">⏸ Pause</button>
+                <button id="btn-reset" class="btn">↺ Reset Orbits</button>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <label><strong>Camera Presets:</strong></label>
+            <div class="btn-group">
+                <button id="cam-perspective" class="btn btn-sm">3D Angle</button>
+                <button id="cam-top" class="btn btn-sm">Top Ecliptic</button>
+                <button id="cam-edge" class="btn btn-sm">Edge-On</button>
+            </div>
+        </div>
+
+        <div class="panel-section capture-section">
+            <label><strong>Export & Media:</strong></label>
+            <div class="btn-group">
+                <button id="btn-screenshot" class="btn btn-primary">📸 Screenshot (PNG)</button>
+                <button id="btn-record" class="btn btn-record">🎥 Record WebM</button>
+            </div>
+            <div class="btn-group" style="margin-top: 6px;">
+                <button id="btn-watch-mp4" class="btn" style="background: #2a9d8f; border-color: #52b788; color: #fff; font-weight: 600;">▶ Play Rendered MP4</button>
+            </div>
+            <div id="recording-status" class="recording-status hidden">
+                <span class="recording-dot"></span> Recording: <span id="recording-timer">00:00</span>
+            </div>
+        </div>
+
+        <div class="panel-section credits-section" style="border-bottom: none; padding-bottom: 0;">
+            <p style="font-size: 0.72rem; color: #778da9; line-height: 1.35;">
+                <strong style="color: #90e0ef;">Inspiration & Credit:</strong><br>
+                Dr. Michael Clarage — original empirical observation of logarithmic planetary quantization across stellar systems.
+            </p>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎬 Eigenmode Orbital Dynamics Simulation (1080p MP4)</h3>
+                <button id="btn-close-modal" class="btn-close">&times;</button>
+            </div>
+            <video id="sim-video-player" controls autoplay loop playsinline>
+                <source src="eigenmode_orbital_simulation.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Radial Standing Wave Oscilloscope -->
+    <div class="ui-panel wave-scope-panel" id="scope-panel">
+        <div class="scope-header">
+            <strong>Radial Standing-Wave Potential ψ(r)</strong>
+            <span class="subtext">ψ(r) = A · sin(κ · ln(r/r₀))</span>
+        </div>
+        <canvas id="wave-canvas" width="380" height="140"></canvas>
+        <div class="scope-legend">
+            <span class="legend-item"><span class="dot occupied"></span> Occupied Nodal Shell (∇P = 0)</span>
+            <span class="legend-item"><span class="dot predicted"></span> Predicted / Empty Shell</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
