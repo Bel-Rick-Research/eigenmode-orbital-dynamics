@@ -1,6 +1,6 @@
 # Eigenmode Orbital Dynamics — Research Paper & Prediction Catalog
 
-[Primary Research Paper](paper/EIGENMODE-ORBITAL-DYNAMICS.md) | [Compiled PDF](paper/EIGENMODE-ORBITAL-DYNAMICS.pdf) | [Exoplanet Predictions](paper/EXOPLANET-PREDICTIONS.md) | [Interactive 3D Simulation](simulation/index.html) | [Summation Video & Narration](summation-video/narration/YOUTUBE-SCRIPT-ELI5.md)
+[Primary Research Paper](paper/EIGENMODE-ORBITAL-DYNAMICS.md) | [Compiled PDF](paper/EIGENMODE-ORBITAL-DYNAMICS.pdf) | [Owner's Training Manual](paper/OWNER-TRAINING-MANUAL.md) | [Exoplanet Predictions](paper/EXOPLANET-PREDICTIONS.md) | [Interactive 3D Simulation](simulation/index.html) | [Summation Video & Narration](summation-video/narration/YOUTUBE-SCRIPT-ELI5.md)
 
 **Classification:** Theoretical & Observational Astrophysics — Macroscopic Standing Wave Mechanics  
 **Author:** Rick Drayson  
@@ -19,6 +19,7 @@ This repository is organized into three dedicated modules: the research paper an
 ├── paper/                              # Peer-ready research paper & mathematical validation
 │   ├── EIGENMODE-ORBITAL-DYNAMICS.md   # Primary research paper (with disclosed open problems)
 │   ├── EIGENMODE-ORBITAL-DYNAMICS.pdf  # Compiled publication-ready PDF document
+│   ├── OWNER-TRAINING-MANUAL.md        # Comprehensive pedagogical guide to mastering the paper
 │   ├── EXOPLANET-PREDICTIONS.md        # Prediction catalog: retrospective + Category 1/2 blind predictions
 │   ├── generate_pdf.py                 # Automated PDF build pipeline (KaTeX -> Headless Chromium)
 │   └── scripts/                        # Python statistical rigor and validation test suite
